@@ -22,4 +22,11 @@
         </tr>        
       </tbody>
     </table>
+    <a href="{{route('comment.create', $post->id)}}">Aggiungi un commento</a>
+    <div class="comments">
+      @foreach ($comments as $comment)
+        <h4>{{$comment->name}}</h4>
+        <p>{{$comment->text}}</p>
+      @endforeach
+    </div>
 @endsection

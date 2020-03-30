@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<a href="{{route('posts.index')}}">Torna a i post</a>
     <table class="table">
       <thead>
         <tr>
@@ -22,5 +23,10 @@
         </tr>        
       </tbody>
     </table>
-    <a href="{{route('posts.index')}}">Torna a i post</a>
+    <div class="comments">
+      @foreach ($comments as $comment)
+        <h4>{{$comment->name}}</h4>
+        <p>{{$comment->text}}</p>
+      @endforeach
+    </div>
 @endsection

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Post;
 use App\Comment;
+use App\Post;
 
-class PostController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        
-        return view('guest.index', compact('posts'));
+        //
     }
 
     /**
@@ -27,7 +25,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('comments.create');
     }
 
     /**
@@ -38,7 +36,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -47,13 +45,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $post = Post::where('slug', $slug)->first();
-
-        $comments = Comment::where('post_id', $post->id)->get();
-        
-        return view('guest.show', compact('post','comments'));
+        //
     }
 
     /**
