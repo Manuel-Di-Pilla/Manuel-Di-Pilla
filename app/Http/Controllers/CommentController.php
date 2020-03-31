@@ -25,7 +25,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        return view('comments.create');
+        
     }
 
     /**
@@ -36,7 +36,18 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $data = $request->all();
+        $idPost = $data['id'];
+        $newComment = new Comment;
+        $newComment->name = 'anonimo';
+        $newComment->text = $data['text'];
+        $newComment->post_id = $idPost;
+
+        $saved = $newComment->save();
+        if(!$saved) {
+            return redirect()->back();
+        }  
+        return redirect()->route('post.show', $data['slug']);
     }
 
     /**
@@ -70,7 +81,7 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
