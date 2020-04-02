@@ -9,6 +9,11 @@
           <th>Body</th>
           <th>Created At</th>
           <th>Updated At</th>
+          @if ($post->path_image == null)
+              
+          @else
+              <th>Image</th>
+          @endif
         </tr>
       </thead>
       <tbody>
@@ -19,6 +24,11 @@
           <td>{{$post->body}}</td>
           <td>{{$post->created_at}}</td>
           <td>{{$post->updated_at}}</td>
+          @if ($post->path_image == null)
+              
+          @else
+            <th><img src="{{asset('storage/' . $post->path_image)}}" alt=""></th>
+          @endif
         </tr>        
       </tbody>
     </table>
@@ -26,8 +36,6 @@
       @foreach ($comments as $comment)
         <h4>{{$comment->name}}</h4>
         <p>{{$comment->text}}</p>
-        {{-- <h4>{{$post->comment->name}}</h4>
-        <p>{{$post->comment->text}}</p> --}}
       @endforeach
       <form action="{{route('comment.store')}}" method="post">
         @csrf
