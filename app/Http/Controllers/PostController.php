@@ -15,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::where('published', 'yes')->get();
         
         return view('guest.index', compact('posts'));
     }

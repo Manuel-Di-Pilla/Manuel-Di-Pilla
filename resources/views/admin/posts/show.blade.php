@@ -10,7 +10,12 @@
           <th>Body</th>
           <th>Created At</th>
           <th>Updated At</th>
-          <th>image</th>
+          <th>published</th>
+          @if ($post->path_image == null)
+              
+          @else
+              <th>image</th>
+          @endif
         </tr>
       </thead>
       <tbody>
@@ -21,7 +26,12 @@
           <td>{{$post->body}}</td>
           <td>{{$post->created_at}}</td>
           <td>{{$post->updated_at}}</td>
-          <td><img src="{{asset('storage/' . $post->path_image)}}" alt=""></td>
+          <td>{{$post->published}}</td>
+          @if ($post->path_image == null)
+              
+          @else
+              <td><img src="{{asset('storage/' . $post->path_image)}}" alt=""></td>
+          @endif
         </tr>        
       </tbody>
     </table>

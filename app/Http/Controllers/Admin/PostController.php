@@ -64,6 +64,7 @@ class PostController extends Controller
         $newPost->title = $data['title'];
         $newPost->body = $data['body'];
         $newPost->user_id = $idUser;
+        $newPost->published = $data['published'];
         $newPost->slug = Str::finish(Str::slug($newPost->title), rand(1, 1000000));
         $newPost->path_image = $path;
 
@@ -133,6 +134,7 @@ class PostController extends Controller
 
         $post->title = $data['title'];
         $post->body = $data['body'];
+        $post->published = $data['published'];
         $post->slug = Str::finish(Str::slug($post->title), rand(1, 1000000));
 
         $updated = $post->update();

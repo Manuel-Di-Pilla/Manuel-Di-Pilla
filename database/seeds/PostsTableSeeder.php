@@ -15,12 +15,14 @@ class PostsTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
+        $public = ['yes', 'no'];
         for ($i=0; $i < 10; $i++) { 
             $newPost = new Post;
             $newPost->title = $faker->sentence(3);
             $newPost->body = $faker->text(255);
             $newPost->slug = Str::finish(Str::slug($newPost->title), rand(1, 1000000));
             $newPost->user_id = User::inRandomOrder()->first()->id;
+            $newPost->published = $public[rand(0, 1)];
             $newPost->save();
         }
     }

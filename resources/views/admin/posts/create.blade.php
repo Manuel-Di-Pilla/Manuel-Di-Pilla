@@ -26,6 +26,13 @@
         </div>
 
         <div class="form-group">
+          <select name="published" id="">
+            <option value="" disabled selected>published</option>
+            <option value="yes">yes</option>
+            <option value="no">no</option>
+          </select>
+        </div>
+        <div class="form-group">
           <input type="file" name="path_image" id="img" accept="image/*">
         </div>
 

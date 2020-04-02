@@ -12,7 +12,8 @@ class Post extends Model
         'body',
         'slug',
         'updated_at',
-        'path_image'
+        'path_image',
+        'published'
     ];
 
     public function user() {
