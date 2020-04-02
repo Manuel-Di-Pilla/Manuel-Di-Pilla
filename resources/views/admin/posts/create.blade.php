@@ -2,7 +2,7 @@
 @section('content')
   <div class="container">
     <div class="row">
-      <form action="{{route('posts.store')}}" method="post">
+      <form action="{{route('posts.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('POST')
         <div class="form-group">
@@ -23,6 +23,10 @@
           <p>{{$tag->name}}</p>
           <input type="checkbox" name="tags[]" value="{{$tag->id}}"> <br>
           @endforeach
+        </div>
+
+        <div class="form-group">
+          <input type="file" name="path_image" id="img" accept="image/*">
         </div>
 
         <button class="btn btn-success" type="submit">Salva</button>

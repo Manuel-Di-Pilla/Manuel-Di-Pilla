@@ -7,6 +7,7 @@ use App\Comment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Tag;
 
@@ -19,7 +20,8 @@ class PostController extends Controller
     
         $this->validateRules = [
             'title' => 'required|string|max:255',
-            'body' => 'required|string'
+            'body' => 'required|string',
+            'path_image'=> 'image'
         ];
     }
     /**
@@ -56,11 +58,14 @@ class PostController extends Controller
         $request->validate($this->validateRules);
         $data = $request->all();
 
+        $path = Storage::disk('public')->put('images', $data['path_image']);
+
         $newPost = new Post;
         $newPost->title = $data['title'];
         $newPost->body = $data['body'];
         $newPost->user_id = $idUser;
         $newPost->slug = Str::finish(Str::slug($newPost->title), rand(1, 1000000));
+        $newPost->path_image = $path;
 
         $saved = $newPost->save();
         if(!$saved) {
@@ -68,6 +73,7 @@ class PostController extends Controller
         } 
         
         $newPost->tags()->attach($data['tags']);
+
         
         return redirect()->route('posts.show', $newPost->slug);
     }
